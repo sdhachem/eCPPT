@@ -1,5 +1,4 @@
 ## CheatSheet 
 
-1. ### Scanning
-
-2. ### SMB Misconfiguration
+### 1.Scanning
+### 2.SMB Misconfiguration
