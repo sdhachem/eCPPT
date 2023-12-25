@@ -18,12 +18,12 @@
 
 ##### 3.1.1 All OS
 
-* Method 1 : Search Local Exploit using MSF
-* Method 2 : Impersonate privileged users
+    * Method 1 : Search Local Exploit using MSF
+    * Method 2 : Impersonate privileged users
 
 ##### 3.1.2 Specific Windows
 
-  *** Method 3 : Via Windows Services 
+    * Method 3 : Via Windows Services 
   
 ##### 3.1.3 Specific Linux
 
