@@ -4,13 +4,21 @@
 
     Search all alive host with or without open ports : 
     
+
+### 3.DNS Misconfiguration
+
+    * Exploiting zone transfer to display all subdomains
+    * Exploiting zone transfer to display zone
+
 ### 2.SMB Misconfiguration
 
     Mount shared drive : 
     Linux   : mount -t cifs -o user=USER,password=PWD,rw //IP/share
     Windows : net use K: \\IPTarget\SharedDrive
 
+### 2.Sniffing
 
+#### 2.1 MiTM between vtcim1 & victm2 using arp poisonning
 
 ### 3.Post Exploitation
 
