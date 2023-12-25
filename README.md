@@ -16,14 +16,14 @@
 
 #### 3.1 ByPass UAC
 
-##### All OS
+##### 3.1.1 All OS
 
 * Method 1 : Search Local Exploit using MSF
 * Method 2 : Impersonate privileged users
 
-##### Specific Windows
+##### 3.1.2 Specific Windows
 
   *** Method 3 : Via Windows Services 
   
-##### Specific Linux
+##### 3.1.3 Specific Linux
 
