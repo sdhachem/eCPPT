@@ -1,3 +1,3 @@
-## Offensive CheatSheet 
+## CheatSheet 
 
 <l1> scanning
