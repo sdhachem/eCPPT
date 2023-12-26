@@ -19,9 +19,9 @@
 
 ### 2.SMB Misconfiguration
 
-nmap -p445 --script smb-protocols TARGET
-nmap -p445 --script smb-security-mode TARGET
-nmap -p445 --script smb-enum-users  TARGET
+    nmap -p445 --script smb-protocols TARGET
+    nmap -p445 --script smb-security-mode TARGET
+    nmap -p445 --script smb-enum-users  TARGET
 
    #### 2.1 SMB Share
      Mount shared drive : 
