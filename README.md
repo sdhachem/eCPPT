@@ -18,19 +18,19 @@
     - Exploiting zone transfer to display zone
 
 ### 2.SMB Misconfiguration
-
-    #### 2.1 Mount shared drive : 
+   #### 2.1 SMB Share
+     Mount shared drive : 
        - Linux   : mount -t cifs -o user=USER,password=PWD,rw //IP/share
        - Windows : net use K: \\IPTarget\SharedDrive
 
-   #### 2.2
+   #### 2.2 Metasploit
       exploit/windows/smb/psexec
       exploit/windows/smb/smb_relay
       auxiliary/scanner/smb/smb_login
       auxiliary/scanner/smb/smb_enumshares
 
    #### 2.3 Check Null session (Anynomous Access)
-   smbclient -L IPTarget
+       smbclient -L IPTarget
    
 
 ### 4.Exploitation
