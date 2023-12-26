@@ -1,8 +1,8 @@
 ## CheatSheet 
 
-### 1.Most used nmap command
+### 1.Scanning
 
-#### 1.1 NMAP
+#### 1.1 Most used nmap command
     - scan -Pn -sn TARGET                 : Search all alive host with or without open ports 
     - scan -sV -n TARGET                  : Fingerprint all exposed services
     - scan -sV -n TARGET -p SEVICE_PORT   : Fingerprint a specific exposed service
