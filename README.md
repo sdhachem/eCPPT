@@ -24,13 +24,13 @@
        - Windows : net use K: \\IPTarget\SharedDrive
 
    #### 2.2 Metasploit
-      exploit/windows/smb/psexec
-      exploit/windows/smb/smb_relay
-      auxiliary/scanner/smb/smb_login
-      auxiliary/scanner/smb/smb_enumshares
+        exploit/windows/smb/psexec
+        exploit/windows/smb/smb_relay
+        auxiliary/scanner/smb/smb_login
+        auxiliary/scanner/smb/smb_enumshares
 
    #### 2.3 Check Null session (Anynomous Access)
-       smbclient -L IPTarget
+        smbclient -L IPTarget
    
 
 ### 4.Exploitation
@@ -39,9 +39,9 @@
 ### 3.Post Exploitation
 
 #### 3.0 Infor Gathering
-run winenum
-run arp_scanner –r TargetNetworkSubnet
-run post/multi/gather/filezilla_client_cred
+        run winenum
+        run arp_scanner –r TargetNetworkSubnet
+        run post/multi/gather/filezilla_client_cred
 
 #### 3.1 Privilege Escalation
 
