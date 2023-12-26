@@ -100,7 +100,7 @@ nmap -p445 --script smb-enum-users  TARGET
 
 ### 4.Bruteforcing
 
-hydra -L users.txt -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt demo.ine.local smb
+    hydra -L users.txt -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt TARGET smb
 
 
 ### 5.Sniffing
