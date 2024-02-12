@@ -1,15 +1,22 @@
 ### 1.Scanning
 
 #### 1.1 Most used nmap command
-    - scan -Pn -sn TARGET                 : Search all alive host with or without open ports 
-    - scan -sV -n TARGET                  : Fingerprint all exposed services
-    - scan -sV -n TARGET -p SEVICE_PORT   : Fingerprint a specific exposed service
-    - scan -O -n TARGET                   : Find Operating System
+    - nmap -Pn -sn TARGET                 : Search all alive host with or without open ports 
+    - nmap -sV -n TARGET                  : Fingerprint all exposed services
+    - nmap -sV -n TARGET -p SEVICE_PORT   : Fingerprint a specific exposed service
+    - nmap -O -n TARGET                   : Find Operating System
+    - nmap -O -n TARGET                   : Find Operating System
+    - nmap -sS -v --top-ports 1000        : Scan top 1000 ports
 
+    
 #### 1.2 Metasploit
     - auxiliary/scanner/smb/smb_version 
     - auxiliary/scanner/portscan/tcp
-    
+
+#### 1.3 Parsing NMAP scan
+    - cat nmap.output | grep Up | cut -d' ' -f2 > scope.txt  : Search only live host after ping scan
+    - cat scope.top1000.gnmap | grep ' 80/open' | cut -d' ' -f2
+
 ### 2.DNS Misconfiguration
     - dig @authorative_dns_server -t axfr DOMAIN              :    Exploiting zone transfer to display all subdomains
     - dig @authorative_dns_server axfr -x subNet (192.168)    :    Reverse DNS
