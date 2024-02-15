@@ -34,10 +34,12 @@
     smbclient -L IPTarget
     
    #### 3.3 Mounting SMB Share
-     Mount shared drive : 
+     * Mount shared drive : 
        - Linux   : mount -t cifs -o user=USER,password=PWD,rw //IP/share
        - Windows : net use K: \\IPTarget\SharedDrive
-
+     * Upload file
+        smbclient //<server_ip>/<shared_folder> -U <username>
+        put <local_file_path>
    #### 3.4 Metasploit
     exploit/windows/smb/psexec
     exploit/windows/smb/smb_relay
