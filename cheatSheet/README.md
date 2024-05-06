@@ -38,7 +38,7 @@
        - Linux   : mount -t cifs -o user=USER,password=PWD,rw //IP/share
        - Windows : net use K: \\IPTarget\SharedDrive
      * Upload file
-        smbclient //<server_ip>/<shared_folder> -U <username>
+        smbclient //<server_ip>/<shared_folder> -U <username%password>
         put <local_file_path>
    #### 3.4 Metasploit
     exploit/windows/smb/psexec
