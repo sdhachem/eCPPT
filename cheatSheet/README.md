@@ -32,6 +32,8 @@
     
    #### 3.2 Check Null session (Anynomous Access)
     smbclient -L IPTarget
+    smbclient -U '%' -N \\\\<IP>\\<SHARE> # null session to connect to a windows share
+    smbclient -U '<USER>' \\\\<IP>\\<SHARE> # authenticated session to connect to a windows share (you will be prompted for a password)
     
    #### 3.3 Mounting SMB Share
      * Mount shared drive : 
