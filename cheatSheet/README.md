@@ -36,6 +36,8 @@
     smbclient -U '<USER>' \\\\<IP>\\<SHARE> # authenticated session to connect to a windows share (you will be prompted for a password)
     
    #### 3.3 Mounting SMB Share
+     * Display shares 
+         net view IPTarget
      * Mount shared drive : 
        - Linux   : mount -t cifs -o user=USER,password=PWD,rw //IP/share
        - Windows : net use K: \\IPTarget\SharedDrive
