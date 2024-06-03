@@ -28,11 +28,12 @@
     nmap -p445 --script smb-security-mode TARGET
     nmap -p445 --script smb-enum-users  TARGET
     auxiliary/scanner/smb/smb_enumshares
-    * rpcclient -U "" demo2.ine.local -N ()
-    ** enumdomusers: Enumerate users
-    ** enumdomgroups: Enumerate domain groups
-    ** enumdomains: Enumerate domain information
-    **  queryuser userName
+    rpcclient -U "" demo2.ine.local -N ()
+        enumdomusers: Enumerate users
+        enumdomgroups: Enumerate domain groups
+        enumdomains: Enumerate domain information
+        queryuser userName
+        netshareenumall : Enumerate shares
     
    #### 3.2 Check Null session (Anynomous Access)
     * Display shares 
