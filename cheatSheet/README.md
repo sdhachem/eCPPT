@@ -28,17 +28,22 @@
     nmap -p445 --script smb-security-mode TARGET
     nmap -p445 --script smb-enum-users  TARGET
     auxiliary/scanner/smb/smb_enumshares
-
+    * rpcclient -U "" demo2.ine.local -N ()
+    ** enumdomusers: Enumerate users
+    ** enumdomgroups: Enumerate domain groups
+    ** enumdomains: Enumerate domain information
+    **  queryuser userName
     
    #### 3.2 Check Null session (Anynomous Access)
-    smbclient -L IPTarget
+    * Display shares 
+         net view IPTarget
+         smbmap -H IPTarget
+         smbclient -L IPTarget
+    * shares access
     smbclient -U '%' -N \\\\<IP>\\<SHARE> # null session to connect to a windows share
     smbclient -U '<USER>' \\\\<IP>\\<SHARE> # authenticated session to connect to a windows share (you will be prompted for a password)
     
    #### 3.3 Mounting SMB Share
-     * Display shares 
-         net view IPTarget
-         smbmap -H IPTarget
      * Mount shared drive : 
        - Linux   : mount -t cifs -o user=USER,password=PWD,rw //IP/share
        - Windows : net use K: \\IPTarget\SharedDrive
