@@ -38,6 +38,7 @@
    #### 3.3 Mounting SMB Share
      * Display shares 
          net view IPTarget
+         smbmap -H IPTarget
      * Mount shared drive : 
        - Linux   : mount -t cifs -o user=USER,password=PWD,rw //IP/share
        - Windows : net use K: \\IPTarget\SharedDrive
