@@ -154,6 +154,9 @@
 wget -S --spider Target
 nikto -Help
 nikto -h target -Tuning 5 -Format html -Cgidirs all -list-plugins -useragent 'My user-aget'
+gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
+403,404 -x .php,.xml,.txt -r
+
 #### 10.2 SQLi
     https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
     https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
