@@ -150,7 +150,11 @@
         arpspoof -i tap0 -t vic2_IP -r vic2_IP
 
 ### 10.Web Apps
-#### 10.1 SQLi
+#### 10.1 Scanning/Discovring
+wget -S --spider Target
+nikto -Help
+nikto -h target -Tuning 5 -Format html -Cgidirs all -list-plugins -useragent 'My user-aget'
+#### 10.2 SQLi
     https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
     https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
 
