@@ -177,4 +177,6 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
         EXECUTE AS LOGIN = 'sa'  -- move to the selected user        
         EXEC xp_cmdshell whoami -- execute whoami 
 
+### 11 NTLM Hash
+john hash.txt -- Cracking the hash
 
