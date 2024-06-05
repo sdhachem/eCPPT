@@ -131,6 +131,9 @@
     ssh Port Forwarding ==>
         - ssh -4 -L 8000:127.0.0.1:3306 user@target    : Forward traffic going to specific port to another port on the Victim
         - ssh -D 9090 user@target                      : Open socks proxy listning on 9090
+
+#### 6.3 Persistence
+        run persistence -h (meterpreter)
         
 ### 7.Bruteforcing
 
