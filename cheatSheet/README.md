@@ -122,8 +122,8 @@
         
 ##### 6.1.4 Linux
     ##### 6.1.4.1 SUID (Linux)
-    - find / -perm -u=s -type f 2>/dev/null
-    - find / -user root -perm -4000 -exec ls -ldb {} \;
+    find / -perm -u=s -type f 2>/dev/null
+    find / -user root -perm -4000 -exec ls -ldb {} \;
 
     ##### 6.1.4.2 Writable file (Linux)
     find / -perm -o=w -type f 2>/dev/null | grep -v "/proc/"
@@ -148,6 +148,9 @@
     ##### 6.1.4.4 Find data
     find / -type f | xargs grep -il "password"  2>/dev/null
 
+    ##### Tools
+    https://github.com/rebootuser/LinEnum
+    enum4linux (Kali)
 #### 6.2 Pivoting
     From MSF Console          : route add 192.168.4.0 (subnet) 255.255.255.0(mask) 6(session)
     From metrerpreter         : run autoroute -s 192.168.4.0/24
