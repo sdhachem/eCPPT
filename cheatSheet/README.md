@@ -85,6 +85,7 @@
     run arp_scanner –r TargetNetworkSubnet
     run post/multi/gather/filezilla_client_cred
     run post/windows/gather/enum_applications
+    run post/windows/gather/smart_hashdump
 
 #### 6.1 Privilege Escalation
 
