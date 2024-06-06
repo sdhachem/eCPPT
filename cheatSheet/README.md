@@ -98,7 +98,7 @@
     exploit/multi/mysql/mysql_udf_payload        : if mysql running as root and we have the password
     incognito / mimikatz                         : Impersonate priviliged user
 
-##### 6.1.2 Linux
+##### 6.1.2 Windows
     ##### 6.1.2.1 Via Windows Services 
     
     - Manually : 
