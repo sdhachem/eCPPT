@@ -124,7 +124,16 @@
     ##### 6.1.2.3 privchecks
     https://github.com/itm4n/PrivescCheck
     powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
+
+    ##### 6.1.2.4 Useful command
+    reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+    reg query "HKCU\Software\Policies\Microsoft\Windows\Installer"
+    reg query "HKLM\Software\Policies\Microsoft\Windows\Installer"
     
+    tasklist /FI "username eq administrator" 
+    get-acl "C:\Program Files\HTTPServer\hfs.exe"  
+    Get-ACL -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' | Format-List
+
 ##### 6.1.3 Linux
     ##### 6.1.3.1 SUID (Linux)
     find / -perm -u=s -type f 2>/dev/null
