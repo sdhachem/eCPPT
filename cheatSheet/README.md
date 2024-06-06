@@ -195,6 +195,7 @@
     SSH Using MSF             : auxiliary/scanner/ssh/ssh_login
     Brute Force MySQL         : use auxiliary/scanner/mysql/mysql_login
     Bruteforce SMB            : auxiliary/scanner/smb/smb_login
+    Brute Force Sql Server    : auxiliary/scanner/mssql/mssql_login
 
 ### 8.Lateral Movement
     RDP from kali                             : xfreerdp /u:guest_1 /p:guestpwd /v:Target
