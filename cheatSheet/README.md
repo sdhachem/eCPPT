@@ -134,6 +134,11 @@
     get-acl "C:\Program Files\HTTPServer\hfs.exe"  
     Get-ACL -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' | Format-List
 
+    findstr.exe /M /si C:/ password *.txt *.ini *.vbs *.cmd *.ps1 *.bat *.xml *.inf *.eml *.log 
+    reg query HKLM /f password /t REG_SZ /s
+    reg query HKCU /f password /t REG_SZ /s
+    doskey /history
+
 ##### 6.1.3 Linux
     ##### 6.1.3.1 SUID (Linux)
     find / -perm -u=s -type f 2>/dev/null
