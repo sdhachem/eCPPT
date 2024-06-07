@@ -78,6 +78,8 @@
     - exploit/windows/http/badblue_passthru for badblue 2.7 ==> Result in a shell
     - exploit/windows/http/rejetto_hfs_exec for hfs 2.3  ==> Result in a shell
 
+#### 5.3 Webshell
+    /usr/share/webshells
 ### 6.Post Exploitation
 
 #### 6.0 Internal Reconnaissance
@@ -127,9 +129,10 @@
     https://github.com/itm4n/PrivescCheck
     powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
 
-
-
-
+    ##### 6.1.2.4 Impersonation
+    load incognito
+    impersonate_token domain\username
+    
     
     ##### 6.1.2.4 Useful command
     reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
