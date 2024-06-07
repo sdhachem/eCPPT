@@ -243,3 +243,5 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
 ### 11 NTLM Hash
 john hash.txt -- Cracking the hash
 
+### 11 Recon for Lateral Movement
+netstat -tnlp
