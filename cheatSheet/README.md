@@ -12,6 +12,8 @@
 #### 1.2 Metasploit
     - auxiliary/scanner/smb/smb_version 
     - auxiliary/scanner/portscan/tcp
+    - post/multi/gather/ping_sweep
+    - run arp_scanner
 
 #### 1.3 Parsing NMAP scan
     - cat nmap.output | grep Up | cut -d' ' -f2 > scope.txt  : Search only live host after ping scan
