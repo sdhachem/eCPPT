@@ -287,6 +287,7 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
             Find-LocalAdminAccess
             Get-DomainObject
             Get-Domain
+            https://book.hacktricks.xyz/windows-hardening/basic-powershell-for-pentesters/powerview
          #### 12.1.2 Bloodhound
             cd blooHoundInstallPath\BloodHound\resources\app\Collectors
             powershell -ep bypass
