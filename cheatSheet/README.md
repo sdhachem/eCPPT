@@ -2,7 +2,7 @@
 
 #### 1.1 Most used nmap command
     - nmap -Pn -sn TARGET                 : Search all alive host with or without open ports 
-    - nmap -sV -n TARGET                  : Fingerprint all exposed services
+    - nmap -sV -p- -n --open TARGET       : Fingerprint all exposed services on all ports
     - nmap -sV -n TARGET -p SEVICE_PORT   : Fingerprint a specific exposed service
     - nmap -O -n TARGET                   : Find Operating System
     - nmap -O -n TARGET                   : Find Operating System
