@@ -340,4 +340,32 @@ gobuster dir -u http://targetIp -w /usr/share/wordlists/dirb/common.txt -b
         #### 12.2.10 Remote Powershell session
         Enter-PSSession COMPUTER (Find-LocalAdminAccess)
 
-        
+
+### 12 Password Recovery (Cracking)
+
+#### 12.1 hashcat
+1. Identify the Hash Type (here looking for hash starting with $P$)
+	hashcat --example-hashes | grep  'Example.Hash........: \$P\$' -B 11
+
+0. Identify the right mode
+	hashcat --help | grep -A1000 "Hash modes" | grep -i ntlm
+
+3. Run Hashcat with a Wordlist (Dictionary Attack)
+
+	hashcat -m 0 -a 0 hash.txt /usr/share/wordlists/rockyou.txt --force
+		-m 0 → MD5 hash mode
+		-a 0 → Attack mode (dictionary)
+
+1. Show Cracked Passwords
+	hashcat --show -m 0 hash.txt
+
+#### 12.2 john
+1. Show format 
+	john --list=formats | grep -i nt
+
+2.  Run john with a Wordlist  (if format not specified ==> john select one)
+	john --format=NT --wordlist=/path/to/wordlist.txt hashes.txt
+
+3. Show Cracked Passwords
+	john --format=NT --show  nt_hashes.txt
+
